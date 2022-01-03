@@ -21,12 +21,25 @@ public class FacetEngineTests
 
         // Then
         Assert.NotNull(result);
+
         Assert.NotNull(result.Items);
         Assert.Equal(6, result.Items?.Count());
+
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
-        Assert.Contains(result.Facets, x => x.Qualifier == "make");
-        Assert.Contains(result.Facets, x => x.Qualifier == "year");
+        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
+        Assert.Equal(3, makeFacet.Values?.Count());
+        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
+        Assert.Equal(6, yearFacet.Values?.Count());
+        Assert.Single(yearFacet.Values, x => x.Value == "2000");
+        Assert.Single(yearFacet.Values, x => x.Value == "2001");
+        Assert.Single(yearFacet.Values, x => x.Value == "2002");
+        Assert.Single(yearFacet.Values, x => x.Value == "2003");
+        Assert.Single(yearFacet.Values, x => x.Value == "2004");
+        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
@@ -45,13 +58,26 @@ public class FacetEngineTests
 
         // Then
         Assert.NotNull(result);
+
         Assert.NotNull(result.Items);
         Assert.Equal(2, result.Items?.Count());
         Assert.All(result.Items, x => Assert.Equal("Honda", x.Make));
+
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
-        Assert.Contains(result.Facets, x => x.Qualifier == "make");
-        Assert.Contains(result.Facets, x => x.Qualifier == "year");
+        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
+        Assert.Equal(3, makeFacet.Values?.Count());
+        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
+        Assert.Equal(6, yearFacet.Values?.Count());
+        Assert.Single(yearFacet.Values, x => x.Value == "2000");
+        Assert.Single(yearFacet.Values, x => x.Value == "2001");
+        Assert.Single(yearFacet.Values, x => x.Value == "2002");
+        Assert.Single(yearFacet.Values, x => x.Value == "2003");
+        Assert.Single(yearFacet.Values, x => x.Value == "2004");
+        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
@@ -71,16 +97,29 @@ public class FacetEngineTests
 
         // Then
         Assert.NotNull(result);
+
         Assert.NotNull(result.Items);
         Assert.Equal(1, result.Items?.Count());
         var resultItem = Assert.Single<Car>(result.Items);
         Assert.Equal(2003, resultItem.Year);
         Assert.Equal("Honda", resultItem.Make);
         Assert.Equal("Civic", resultItem.Model);
+
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
-        Assert.Contains(result.Facets, x => x.Qualifier == "make");
-        Assert.Contains(result.Facets, x => x.Qualifier == "year");
+        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
+        Assert.Equal(3, makeFacet.Values?.Count());
+        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
+        Assert.Equal(6, yearFacet.Values?.Count());
+        Assert.Single(yearFacet.Values, x => x.Value == "2000");
+        Assert.Single(yearFacet.Values, x => x.Value == "2001");
+        Assert.Single(yearFacet.Values, x => x.Value == "2002");
+        Assert.Single(yearFacet.Values, x => x.Value == "2003");
+        Assert.Single(yearFacet.Values, x => x.Value == "2004");
+        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
@@ -99,12 +138,25 @@ public class FacetEngineTests
 
         // Then
         Assert.NotNull(result);
+
         Assert.NotNull(result.Items);
         Assert.Equal(6, result.Items?.Count());
+
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
-        Assert.Contains(result.Facets, x => x.Qualifier == "make");
-        Assert.Contains(result.Facets, x => x.Qualifier == "year");
+        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
+        Assert.Equal(3, makeFacet.Values?.Count());
+        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
+        Assert.Equal(6, yearFacet.Values?.Count());
+        Assert.Single(yearFacet.Values, x => x.Value == "2000");
+        Assert.Single(yearFacet.Values, x => x.Value == "2001");
+        Assert.Single(yearFacet.Values, x => x.Value == "2002");
+        Assert.Single(yearFacet.Values, x => x.Value == "2003");
+        Assert.Single(yearFacet.Values, x => x.Value == "2004");
+        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
@@ -128,8 +180,8 @@ public class FacetEngineTests
         Assert.Empty(result.Items);
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
-        Assert.Contains(result.Facets, x => x.Qualifier == "make");
-        Assert.Contains(result.Facets, x => x.Qualifier == "year");
+        Assert.Single(result.Facets, x => x.Qualifier == "make");
+        Assert.Single(result.Facets, x => x.Qualifier == "year");
     }
 
     private static IQueryable<Car> GetTestData()
@@ -162,6 +214,21 @@ class YearFacetDefinition : IFacetDefinition<Car>
         int.TryParse(value, out var valueInt);
         return x => x.Year == valueInt;
     }
+
+    public Facet GetFacet(IQueryable<Car> source)
+    {
+        return new Facet
+        {
+            Qualifier = Qualifier,
+            Name = Name,
+            Values = source
+                .GroupBy(x => x.Year)
+                .Select(x => new FacetValue
+                {
+                    Value = x.Key.ToString(),
+                })
+        };
+    }
 }
 
 class MakeFacetDefinition : IFacetDefinition<Car>
@@ -172,6 +239,21 @@ class MakeFacetDefinition : IFacetDefinition<Car>
     public Predicate<Car> GetPredicate(string value)
     {
         return x => x.Make == value;
+    }
+
+    public Facet GetFacet(IQueryable<Car> source)
+    {
+        return new Facet
+        {
+            Qualifier = Qualifier,
+            Name = Name,
+            Values = source
+                .GroupBy(x => x.Make)
+                .Select(x => new FacetValue
+                {
+                    Value = x.Key,
+                })
+        };
     }
 }
 

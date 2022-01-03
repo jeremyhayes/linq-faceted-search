@@ -11,6 +11,11 @@ public abstract class FacetEngine<T>
 
     public FacetedEnumerable<T> Evaluate(IQueryable<T> source, IDictionary<string, string> filters)
     {
+        // building facet using the original unfiltered source
+        // TODO apply facets to fully-filtered set to help user avoid filtering to nothing
+        var facets = _facetDefinitions
+            .Select(x => x.GetFacet(source));
+
         var items = source;
         foreach (var facet in _facetDefinitions)
         {
@@ -25,12 +30,7 @@ public abstract class FacetEngine<T>
         return new()
         {
             Items = items,
-            Facets = _facetDefinitions
-                .Select(x => new Facet
-                {
-                    Qualifier = x.Qualifier,
-                    Name = x.Name,
-                })
+            Facets = facets,
         };
     }
 }
