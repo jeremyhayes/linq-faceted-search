@@ -11,11 +11,6 @@ public abstract class FacetEngine<T>
 
     public FacetedEnumerable<T> Evaluate(IQueryable<T> source, IDictionary<string, string> filters)
     {
-        // building facet using the original unfiltered source
-        // TODO apply facets to fully-filtered set to help user avoid filtering to nothing
-        var facets = _facetDefinitions
-            .Select(x => x.GetFacet(source));
-
         var items = source;
         foreach (var facet in _facetDefinitions)
         {
@@ -26,6 +21,10 @@ public abstract class FacetEngine<T>
             // TODO this _probably_ won't work in linq2sql/EF
             items = items.Where(x => predicate(x));
         }
+
+        // building facet using the original unfiltered source
+        var facets = _facetDefinitions
+            .Select(x => x.GetFacet(items));
 
         return new()
         {

@@ -66,18 +66,12 @@ public class FacetEngineTests
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
         var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
-        Assert.Equal(3, makeFacet.Values?.Count());
-        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Equal(1, makeFacet.Values?.Count());
         Assert.Single(makeFacet.Values, x => x.Value == "Honda");
-        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
         var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
-        Assert.Equal(6, yearFacet.Values?.Count());
-        Assert.Single(yearFacet.Values, x => x.Value == "2000");
-        Assert.Single(yearFacet.Values, x => x.Value == "2001");
+        Assert.Equal(2, yearFacet.Values?.Count());
         Assert.Single(yearFacet.Values, x => x.Value == "2002");
         Assert.Single(yearFacet.Values, x => x.Value == "2003");
-        Assert.Single(yearFacet.Values, x => x.Value == "2004");
-        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
@@ -108,18 +102,11 @@ public class FacetEngineTests
         Assert.NotNull(result.Facets);
         Assert.Equal(2, result.Facets?.Count());
         var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
-        Assert.Equal(3, makeFacet.Values?.Count());
-        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Equal(1, makeFacet.Values?.Count());
         Assert.Single(makeFacet.Values, x => x.Value == "Honda");
-        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
         var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
-        Assert.Equal(6, yearFacet.Values?.Count());
-        Assert.Single(yearFacet.Values, x => x.Value == "2000");
-        Assert.Single(yearFacet.Values, x => x.Value == "2001");
-        Assert.Single(yearFacet.Values, x => x.Value == "2002");
+        Assert.Equal(1, yearFacet.Values?.Count());
         Assert.Single(yearFacet.Values, x => x.Value == "2003");
-        Assert.Single(yearFacet.Values, x => x.Value == "2004");
-        Assert.Single(yearFacet.Values, x => x.Value == "2005");
     }
 
     [Fact]
