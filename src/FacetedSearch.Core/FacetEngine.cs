@@ -22,9 +22,10 @@ public abstract class FacetEngine<T>
             items = items.Where(x => predicate(x));
         }
 
-        // building facet using the original unfiltered source
+        // build facets after filtering so each includes only available values
         var facets = _facetDefinitions
-            .Select(x => x.GetFacet(items));
+            .Select(x => x.GetFacet(items))
+            .Where(x=>x.Values.Count() > 1);
 
         return new()
         {

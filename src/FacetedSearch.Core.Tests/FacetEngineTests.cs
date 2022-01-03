@@ -64,10 +64,7 @@ public class FacetEngineTests
         Assert.All(result.Items, x => Assert.Equal("Honda", x.Make));
 
         Assert.NotNull(result.Facets);
-        Assert.Equal(2, result.Facets?.Count());
-        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
-        Assert.Equal(1, makeFacet.Values?.Count());
-        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Equal(1, result.Facets?.Count());
         var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
         Assert.Equal(2, yearFacet.Values?.Count());
         Assert.Single(yearFacet.Values, x => x.Value == "2002");
@@ -100,13 +97,7 @@ public class FacetEngineTests
         Assert.Equal("Civic", resultItem.Model);
 
         Assert.NotNull(result.Facets);
-        Assert.Equal(2, result.Facets?.Count());
-        var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
-        Assert.Equal(1, makeFacet.Values?.Count());
-        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
-        var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
-        Assert.Equal(1, yearFacet.Values?.Count());
-        Assert.Single(yearFacet.Values, x => x.Value == "2003");
+        Assert.Empty(result.Facets);
     }
 
     [Fact]
@@ -166,9 +157,7 @@ public class FacetEngineTests
         Assert.NotNull(result.Items);
         Assert.Empty(result.Items);
         Assert.NotNull(result.Facets);
-        Assert.Equal(2, result.Facets?.Count());
-        Assert.Single(result.Facets, x => x.Qualifier == "make");
-        Assert.Single(result.Facets, x => x.Qualifier == "year");
+        Assert.Empty(result.Facets);
     }
 
     private static IQueryable<Car> GetTestData()
