@@ -452,3 +452,6 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# sqlite database
+examples/web-filtering/FacetedSearch.Examples.WebFiltering/spells.db*
