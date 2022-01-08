@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,11 +10,17 @@ public class SpellEntityConfiguration : IEntityTypeConfiguration<Spell>
     public void Configure(EntityTypeBuilder<Spell> builder)
     {
         builder.HasKey(x => x.Key);
+        ConfigureSeedData(builder);
+    }
 
-        builder.HasData(
-            new Spell { Key = "spells:foo", Name = "foo" },
-            new Spell { Key = "spells:bar", Name = "bar" },
-            new Spell { Key = "spells:baz", Name = "baz" }
-        );
+    private void ConfigureSeedData(EntityTypeBuilder<Spell> builder)
+    {
+        using var stream = File.OpenRead(@"Data/Seed/spells.json");
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        var spells = JsonSerializer.Deserialize<List<Spell>>(stream, options);
+        builder.HasData(spells);
     }
 }

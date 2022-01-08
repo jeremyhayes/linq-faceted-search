@@ -28,11 +28,12 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Run();
-
 // create a new database on startup
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 using var context = services.GetRequiredService<SpellsContext>();
 context.Database.EnsureDeleted();
 context.Database.EnsureCreated();
+context.Spell.Count(); // force first use on startup
+
+app.Run();
