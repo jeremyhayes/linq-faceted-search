@@ -10,6 +10,10 @@ public class SpellEntityConfiguration : IEntityTypeConfiguration<Spell>
     public void Configure(EntityTypeBuilder<Spell> builder)
     {
         builder.HasKey(x => x.Key);
+        builder.HasOne(x => x.School)
+            .WithMany(x => x.SpellList)
+            .HasForeignKey(x => x.SchoolKey);
+
         ConfigureSeedData(builder);
     }
 
@@ -21,6 +25,12 @@ public class SpellEntityConfiguration : IEntityTypeConfiguration<Spell>
             PropertyNameCaseInsensitive = true
         };
         var spells = JsonSerializer.Deserialize<List<Spell>>(stream, options);
+        spells.ForEach(x =>
+        {
+            // fix foreign key references on import
+            x.SchoolKey = x.School.Key;
+            x.School = null;
+        });
         builder.HasData(spells);
     }
 }

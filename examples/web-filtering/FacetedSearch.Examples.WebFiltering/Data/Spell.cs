@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace FacetedSearch.Examples.WebFiltering.Data;
@@ -10,7 +11,8 @@ public class Spell
     public int Level { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    // public SpellSchool School { get; set; }
+    public string SchoolKey { get; set; }
+    public virtual School School { get; set; }
     public bool Ritual { get; set; }
     public string CastingTime { get; set; }
     public string Range { get; set; }

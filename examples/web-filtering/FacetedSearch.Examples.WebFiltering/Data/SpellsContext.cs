@@ -11,6 +11,7 @@ public class SpellsContext : DbContext
     {
     }
 
+    public DbSet<School> School { get; set; }
     public DbSet<Spell> Spell { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -320,8 +320,8 @@
         "name": "Mage Hand",
         "pageNumber": 256,
         "school": {
-            "_key": "schools:conjuraction",
-            "name": "Conjuraction"
+            "_key": "schools:conjuration",
+            "name": "Conjuration"
         },
         "ritual": false,
         "castingTime": "1 Action",
@@ -7494,8 +7494,8 @@
         "name": "Cone of Cold",
         "pageNumber": 224,
         "school": {
-            "_key": "schools:avocation",
-            "name": "Avocation"
+            "_key": "schools:evocation",
+            "name": "Evocation"
         },
         "ritual": false,
         "castingTime": "1 Action",

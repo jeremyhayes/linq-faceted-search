@@ -1,0 +1,34 @@
+[
+    {
+        "_key": "schools:abjuration",
+        "name": "Abjuration"
+    },
+    {
+        "_key": "schools:conjuration",
+        "name": "Conjuration"
+    },
+    {
+        "_key": "schools:divination",
+        "name": "Divination"
+    },
+    {
+        "_key": "schools:enchantment",
+        "name": "Enchantment"
+    },
+    {
+        "_key": "schools:evocation",
+        "name": "Evocation"
+    },
+    {
+        "_key": "schools:illusion",
+        "name": "Illusion"
+    },
+    {
+        "_key": "schools:necromancy",
+        "name": "Necromancy"
+    },
+    {
+        "_key": "schools:transmutation",
+        "name": "Transmutation"
+    }
+]
