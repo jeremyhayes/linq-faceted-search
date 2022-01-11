@@ -9,14 +9,20 @@
         <div class="col-3">
 
             <ul class="list-group">
-                @foreach(var facet in Model.Facets){
+                @foreach (var facet in Model.Facets)
+                {
                     <li class="list-group-item">
                         @facet.Name
                         <ul class="list-group">
-                            @foreach(var value in facet.Values)
+                            @foreach (var value in facet.Values)
                             {
+                                // TODO Request.Query is an almost-IDictionary of string->StringValues
+                                // However when we go to render it, there can only be one value.
+                                var routeData = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
+                                routeData[facet.Qualifier] = value.Value;
+
                                 <li class="list-group-item">
-                                    @value.Value
+                                    <a asp-all-route-data="routeData">@value.Name</a>
                                 </li>
                             }
                         </ul>
@@ -32,7 +38,7 @@
                 {
                     <li class="list-group-item">
                         @item.Name
-                    </li>   
+                    </li>
                 }
             </ul>
 

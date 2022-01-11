@@ -23,9 +23,11 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         var query = _context.Spell.AsQueryable();
+        // TODO IEnumerable<KeyValuePair<string, StringValues>> is not contravariant to IDictionary<string, IEnumerable<string>>
+        var filters = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
 
         var result = new SpellFacetEngine()
-            .Evaluate(query, new Dictionary<string, string>());
+            .Evaluate(query, filters);
 
         Spells = result.Items.ToList();
         Facets = result.Facets.ToList();
