@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FacetedSearch.Core;
 using FacetedSearch.Examples.WebFiltering.Data;
@@ -43,7 +44,7 @@ class SpellFacetEngine : FacetEngine<Spell>
         public string Qualifier => "school";
         public string Name => "School";
 
-        public Predicate<Spell> GetPredicate(string value)
+        public Expression<Func<Spell, bool>> GetPredicate(string value)
         {
             return x => x.School.Key == value;
         }
