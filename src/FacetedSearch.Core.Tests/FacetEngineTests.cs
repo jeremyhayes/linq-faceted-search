@@ -202,6 +202,7 @@ class YearFacetDefinition : IFacetDefinition<Car>
                 .GroupBy(x => x.Year)
                 .Select(x => new FacetValue
                 {
+                    Name = x.Key.ToString(),
                     Value = x.Key.ToString(),
                 })
         };
@@ -228,6 +229,7 @@ class MakeFacetDefinition : IFacetDefinition<Car>
                 .GroupBy(x => x.Make)
                 .Select(x => new FacetValue
                 {
+                    Name = x.Key,
                     Value = x.Key,
                 })
         };

@@ -59,6 +59,7 @@ class SpellFacetEngine : FacetEngine<Spell>
                     .GroupBy(x => x.School.Key)
                     .Select(x => new FacetValue
                     {
+                        Name = x.First().School.Name,
                         Value = x.Key
                     })
             };
