@@ -15,5 +15,6 @@ public class Facet
 
 public class FacetValue
 {
+    public string Name { get; init; }
     public string Value { get; init; }
 }

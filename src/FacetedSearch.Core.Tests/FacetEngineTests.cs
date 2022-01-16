@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Linq.Expressions;
 
 using Xunit;
 
@@ -184,7 +185,7 @@ class YearFacetDefinition : IFacetDefinition<Car>
     public string Qualifier => "year";
     public string Name => "Year";
 
-    public Predicate<Car> GetPredicate(string value)
+    public Expression<Func<Car, bool>> GetPredicate(string value)
     {
         // TODO clean string parsing; strong value typing
         int.TryParse(value, out var valueInt);
@@ -201,6 +202,7 @@ class YearFacetDefinition : IFacetDefinition<Car>
                 .GroupBy(x => x.Year)
                 .Select(x => new FacetValue
                 {
+                    Name = x.Key.ToString(),
                     Value = x.Key.ToString(),
                 })
         };
@@ -212,7 +214,7 @@ class MakeFacetDefinition : IFacetDefinition<Car>
     public string Qualifier => "make";
     public string Name => "Make";
 
-    public Predicate<Car> GetPredicate(string value)
+    public Expression<Func<Car, bool>> GetPredicate(string value)
     {
         return x => x.Make == value;
     }
@@ -227,6 +229,7 @@ class MakeFacetDefinition : IFacetDefinition<Car>
                 .GroupBy(x => x.Make)
                 .Select(x => new FacetValue
                 {
+                    Name = x.Key,
                     Value = x.Key,
                 })
         };

@@ -18,14 +18,13 @@ public abstract class FacetEngine<T>
                 continue;
 
             var predicate = facet.GetPredicate(filterValue);
-            // TODO this _probably_ won't work in linq2sql/EF
-            items = items.Where(x => predicate(x));
+            items = items.Where(predicate);
         }
 
         // build facets after filtering so each includes only available values
         var facets = _facetDefinitions
             .Select(x => x.GetFacet(items))
-            .Where(x=>x.Values.Count() > 1);
+            .Where(x => x.Values.Count() > 1);
 
         return new()
         {

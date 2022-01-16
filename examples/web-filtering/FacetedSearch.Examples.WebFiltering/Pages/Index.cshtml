@@ -1,0 +1,67 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+            <ul class="list-group">
+                @foreach (var facet in Model.Facets)
+                {
+                    <li class="list-group-item">
+                        <h5>@facet.Name</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var value in facet.Values)
+                            {
+                                // TODO Request.Query is an almost-IDictionary of string->StringValues
+                                // However when we go to render it, there can only be one value.
+                                var routeData = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
+                                routeData[facet.Qualifier] = value.Value;
+
+                                <li class="list-group-item">
+                                    <a asp-all-route-data="routeData">@value.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+
+        </div>
+        <div class="col">
+
+            <div class="row row-cols-1 g-4">
+                @foreach (var item in Model.Spells)
+                {
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">@item.Name</h4>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Level: @(item.Level == 0 ? "Cantrip": $"Level {item.Level}")</li> 
+                                            <li class="list-group-item">School: @item.School.Name</li>
+                                            <li class="list-group-item">Ritual: @(item.Ritual ? "Yes" : "No")</li>
+                                            <li class="list-group-item">Casting Time: @item.CastingTime</li>
+                                            <li class="list-group-item">Range: @item.Range</li>
+                                            @* <li class="list-group-item">Components: @item.Components</li> *@
+                                            <li class="list-group-item">Duration: @item.Duration</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text">@item.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
