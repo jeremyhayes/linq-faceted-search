@@ -38,7 +38,36 @@ class SpellFacetEngine : FacetEngine<Spell>
 {
     public SpellFacetEngine()
     {
+        Add(new LevelFacet());
         Add(new SchoolFacet());
+    }
+
+    class LevelFacet : IFacetDefinition<Spell>
+    {
+        public string Qualifier => "level";
+        public string Name => "Level";
+
+        public Expression<Func<Spell, bool>> GetPredicate(string value)
+        {
+            var intValue = int.Parse(value);
+            return x => x.Level == intValue;
+        }
+
+        public Facet GetFacet(IQueryable<Spell> source)
+        {
+            return new()
+            {
+                Qualifier = Qualifier,
+                Name = Name,
+                Values = source
+                    .GroupBy(x => x.Level)
+                    .Select(x => new FacetValue
+                    {
+                        Name = x.Key == 0 ? "Cantrips" : $"Level {x.Key}",
+                        Value = x.Key.ToString(),
+                    })
+            };
+        }
     }
 
     class SchoolFacet : IFacetDefinition<Spell>
