@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using FacetedSearch.Core;
 using FacetedSearch.Examples.WebFiltering.Data;
 
@@ -22,7 +23,9 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        var query = _context.Spell.AsQueryable();
+        var query = _context.Spell
+            .Include(x => x.School)
+            .AsQueryable();
         // TODO IEnumerable<KeyValuePair<string, StringValues>> is not contravariant to IDictionary<string, IEnumerable<string>>
         var filters = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
 

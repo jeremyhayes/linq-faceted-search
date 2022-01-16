@@ -33,14 +33,34 @@
         </div>
         <div class="col">
 
-            <ul class="list-group">
+            <div class="row row-cols-1 g-4">
                 @foreach (var item in Model.Spells)
                 {
-                    <li class="list-group-item">
-                        @item.Name
-                    </li>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">@item.Name</h3>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Level: @(item.Level == 0 ? "Cantrip": $"Level {item.Level}")</li> 
+                                            <li class="list-group-item">School: @item.School.Name</li>
+                                            <li class="list-group-item">Ritual: @(item.Ritual ? "Yes" : "No")</li>
+                                            <li class="list-group-item">Casting Time: @item.CastingTime</li>
+                                            <li class="list-group-item">Range: @item.Range</li>
+                                            @* <li class="list-group-item">Components: @item.Components</li> *@
+                                            <li class="list-group-item">Duration: @item.Duration</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text">@item.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
-            </ul>
+            </div>
 
         </div>
     </div>
