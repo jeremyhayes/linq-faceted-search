@@ -8,6 +8,32 @@
     <div class="row">
         <div class="col-3">
 
+            @if (Model.AppliedFilters.Any())
+            {
+                <h4>Applied</h4>
+                <ul class="list-group">
+                    @foreach (var filter in Model.AppliedFilters)
+                    {
+                        @* <li class="list-group-item">
+                            <ul class="list-group list-group-flush"> *@
+                                @foreach (var value in filter.Values)
+                                {
+                                    var routeData = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
+                                    routeData[filter.Qualifier] = null;
+
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>@filter.Name: @value.Name</span>
+                                            <a asp-all-route-data="routeData" title="remove">X</a>
+                                        </div>
+                                    </li>
+                                }
+                            @* </ul>
+                        </li> *@
+                    }
+                </ul>
+            }
+            <h4>Filters</h4>
             <ul class="list-group">
                 @foreach (var facet in Model.Facets)
                 {

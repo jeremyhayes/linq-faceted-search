@@ -41,6 +41,7 @@ public class FacetEngineTests
         Assert.Single(yearFacet.Values, x => x.Value == "2003");
         Assert.Single(yearFacet.Values, x => x.Value == "2004");
         Assert.Single(yearFacet.Values, x => x.Value == "2005");
+        Assert.Empty(result.AppliedFilters);
     }
 
     [Fact]
@@ -70,6 +71,12 @@ public class FacetEngineTests
         Assert.Equal(2, yearFacet.Values?.Count());
         Assert.Single(yearFacet.Values, x => x.Value == "2002");
         Assert.Single(yearFacet.Values, x => x.Value == "2003");
+
+        Assert.NotNull(result.AppliedFilters);
+        Assert.Equal(1, result.AppliedFilters?.Count());
+        var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
+        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Single(makeFilter.Values, x => x.Value == "Honda");
     }
 
     [Fact]
@@ -99,6 +106,15 @@ public class FacetEngineTests
 
         Assert.NotNull(result.Facets);
         Assert.Empty(result.Facets);
+
+        Assert.NotNull(result.AppliedFilters);
+        Assert.Equal(2, result.AppliedFilters?.Count());
+        var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
+        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Single(makeFilter.Values, x => x.Value == "Honda");
+        var yearFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "year");
+        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Single(yearFilter.Values, x => x.Value == "2003");
     }
 
     [Fact]
@@ -136,6 +152,7 @@ public class FacetEngineTests
         Assert.Single(yearFacet.Values, x => x.Value == "2003");
         Assert.Single(yearFacet.Values, x => x.Value == "2004");
         Assert.Single(yearFacet.Values, x => x.Value == "2005");
+        Assert.Empty(result.AppliedFilters);
     }
 
     [Fact]
@@ -148,7 +165,7 @@ public class FacetEngineTests
         var filters = new Dictionary<string, string>
         {
             ["make"] = "Honda",
-            ["year"] = "1800",
+            ["year"] = "2000",
         };
         var result = new CarSearchEngine()
             .Evaluate(queryable, filters);
@@ -159,6 +176,14 @@ public class FacetEngineTests
         Assert.Empty(result.Items);
         Assert.NotNull(result.Facets);
         Assert.Empty(result.Facets);
+        Assert.NotNull(result.AppliedFilters);
+        Assert.Equal(2, result.AppliedFilters?.Count());
+        var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
+        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Single(makeFilter.Values, x => x.Value == "Honda");
+        var yearFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "year");
+        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Single(yearFilter.Values, x => x.Value == "2000");
     }
 
     private static IQueryable<Car> GetTestData()
@@ -207,6 +232,23 @@ class YearFacetDefinition : IFacetDefinition<Car>
                 })
         };
     }
+
+    public AppliedFilter GetAppliedFilter(IQueryable<Car> source, string value)
+    {
+        return new()
+        {
+            Qualifier = Qualifier,
+            Name = Name,
+            Values = source
+                .Where(GetPredicate(value))
+                .GroupBy(x => x.Year)
+                .Select(x => new AppliedFilterValue
+                {
+                    Name = x.Key.ToString(),
+                    Value = x.Key.ToString(),
+                })
+        };
+    }
 }
 
 class MakeFacetDefinition : IFacetDefinition<Car>
@@ -228,6 +270,23 @@ class MakeFacetDefinition : IFacetDefinition<Car>
             Values = source
                 .GroupBy(x => x.Make)
                 .Select(x => new FacetValue
+                {
+                    Name = x.Key,
+                    Value = x.Key,
+                })
+        };
+    }
+
+    public AppliedFilter GetAppliedFilter(IQueryable<Car> source, string value)
+    {
+        return new()
+        {
+            Qualifier = Qualifier,
+            Name = Name,
+            Values = source
+                .Where(GetPredicate(value))
+                .GroupBy(x => x.Make)
+                .Select(x => new AppliedFilterValue
                 {
                     Name = x.Key,
                     Value = x.Key,

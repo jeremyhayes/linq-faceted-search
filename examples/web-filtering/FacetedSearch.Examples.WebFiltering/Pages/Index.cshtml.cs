@@ -14,6 +14,7 @@ public class IndexModel : PageModel
 
     public List<Spell> Spells { get; set; }
     public List<Facet> Facets { get; set; }
+    public List<AppliedFilter> AppliedFilters { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger, SpellsContext context)
     {
@@ -34,6 +35,7 @@ public class IndexModel : PageModel
 
         Spells = result.Items.ToList();
         Facets = result.Facets.ToList();
+        AppliedFilters = result.AppliedFilters.ToList();
     }
 }
 
@@ -71,6 +73,23 @@ class SpellFacetEngine : FacetEngine<Spell>
                     })
             };
         }
+
+        public AppliedFilter GetAppliedFilter(IQueryable<Spell> source, string value)
+        {
+            return new()
+            {
+                Qualifier = Qualifier,
+                Name = Name,
+                Values = source
+                    .Where(GetPredicate(value))
+                    .GroupBy(x => x.Level)
+                    .Select(x => new AppliedFilterValue
+                    {
+                        Name = x.Key == 0 ? "Cantrips" : $"Level {x.Key}",
+                        Value = x.Key.ToString(),
+                    })
+            };
+        }
     }
 
     class SchoolFacet : IFacetDefinition<Spell>
@@ -92,6 +111,23 @@ class SpellFacetEngine : FacetEngine<Spell>
                 Values = source
                     .GroupBy(x => x.School.Key)
                     .Select(x => new FacetValue
+                    {
+                        Name = x.First().School.Name,
+                        Value = x.Key
+                    })
+            };
+        }
+
+        public AppliedFilter GetAppliedFilter(IQueryable<Spell> source, string value)
+        {
+            return new()
+            {
+                Qualifier = Qualifier,
+                Name = Name,
+                Values = source
+                    .Where(GetPredicate(value))
+                    .GroupBy(x => x.School.Key)
+                    .Select(x => new AppliedFilterValue
                     {
                         Name = x.First().School.Name,
                         Value = x.Key

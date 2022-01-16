@@ -8,4 +8,5 @@ public interface IFacetDefinition<T>
     string Name { get; }
     Expression<Func<T, bool>> GetPredicate(string value);
     Facet GetFacet(IQueryable<T> source);
+    AppliedFilter GetAppliedFilter(IQueryable<T> source, string value);
 }

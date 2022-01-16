@@ -12,6 +12,8 @@ public abstract class FacetEngine<T>
     public FacetedEnumerable<T> Evaluate(IQueryable<T> source, IDictionary<string, string> filters)
     {
         var items = source;
+        var appliedFilters = new List<AppliedFilter>();
+
         foreach (var facet in _facetDefinitions)
         {
             if (!filters.TryGetValue(facet.Qualifier, out var filterValue))
@@ -19,6 +21,9 @@ public abstract class FacetEngine<T>
 
             var predicate = facet.GetPredicate(filterValue);
             items = items.Where(predicate);
+
+            var appliedFilter = facet.GetAppliedFilter(source, filterValue);
+            appliedFilters.Add(appliedFilter);
         }
 
         // build facets after filtering so each includes only available values
@@ -30,6 +35,7 @@ public abstract class FacetEngine<T>
         {
             Items = items,
             Facets = facets,
+            AppliedFilters = appliedFilters,
         };
     }
 }
