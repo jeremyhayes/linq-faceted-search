@@ -1,0 +1,802 @@
+[
+    {
+        "_key": "classes:barbarian",
+        "name": "Barbarian",
+        "hitDice": 12,
+        "savingThrows": [
+            {
+                "_key": "abilities:str",
+                "name": "Strength"
+            },
+            {
+                "_key": "abilities:con",
+                "name": "Constitution"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:animalhandling",
+                        "name": "Animal Handling"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:nature",
+                        "name": "Nature"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:survival",
+                        "name": "Survival"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Primal Path",
+        "subclasses": [
+            {
+                "name": "Path of the Berserker"
+            },
+            {
+                "name": "Path of the Totem Warrior"
+            }
+        ]
+    },
+    {
+        "_key": "classes:bard",
+        "name": "Bard",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:dex",
+                "name": "Dexterity"
+            },
+            {
+                "_key": "abilities:cha",
+                "name": "Charisma"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 3,
+                "options": [
+                    {
+                        "_key": "skills:acrobatics",
+                        "name": "Acrobatics"
+                    },
+                    {
+                        "_key": "skills:animalhandling",
+                        "name": "Animal Handling"
+                    },
+                    {
+                        "_key": "skills:arcana",
+                        "name": "Arcana"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:deception",
+                        "name": "Deception"
+                    },
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:investigation",
+                        "name": "Investigation"
+                    },
+                    {
+                        "_key": "skills:medicine",
+                        "name": "Medicine"
+                    },
+                    {
+                        "_key": "skills:nature",
+                        "name": "Nature"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:performance",
+                        "name": "Performance"
+                    },
+                    {
+                        "_key": "skills:persuasion",
+                        "name": "Persuasion"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    },
+                    {
+                        "_key": "skills:sleightofhand",
+                        "name": "Sleight of Hand"
+                    },
+                    {
+                        "_key": "skills:stealth",
+                        "name": "Stealth"
+                    },
+                    {
+                        "_key": "skills:survival",
+                        "name": "Survival"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Bard College",
+        "subclasses": [
+            {
+                "name": "College of Lore"
+            },
+            {
+                "name": "College of Valor"
+            }
+        ]
+    },
+    {
+        "_key": "classes:cleric",
+        "name": "Cleric",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:wix",
+                "name": "Wisdom"
+            },
+            {
+                "_key": "abilities:cha",
+                "name": "Charisma"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:medicine",
+                        "name": "Medicine"
+                    },
+                    {
+                        "_key": "skills:persuasion",
+                        "name": "Persuasion"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Divine Domain",
+        "subclasses": [
+            {
+                "name": "Knowledge Domain"
+            },
+            {
+                "name": "Life Domain"
+            },
+            {
+                "name": "Light Domain"
+            },
+            {
+                "name": "Nature Domain"
+            },
+            {
+                "name": "Tempest Domain"
+            },
+            {
+                "name": "Trickery Domain"
+            },
+            {
+                "name": "War Domain"
+            }
+        ]
+    },
+    {
+        "_key": "classes:druid",
+        "name": "Druid",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:int",
+                "name": "Intelligence"
+            },
+            {
+                "_key": "abilities:wis",
+                "name": "Wisdom"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:arcana",
+                        "name": "Arcana"
+                    },
+                    {
+                        "_key": "skills:animalhandling",
+                        "name": "Animal Handling"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:medicine",
+                        "name": "Medicine"
+                    },
+                    {
+                        "_key": "skills:nature",
+                        "name": "Nature"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    },
+                    {
+                        "_key": "skills:survival",
+                        "name": "Survival"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Druid Circle",
+        "subclasses": [
+            {
+                "name": "Circle of the Land"
+            },
+            {
+                "name": "Circle of the Moon"
+            }
+        ]
+    },
+    {
+        "_key": "classes:fighter",
+        "name": "Fighter",
+        "hitDice": 10,
+        "savingThrows": [
+            {
+                "_key": "abilities:str",
+                "name": "Strength"
+            },
+            {
+                "_key": "abilities:con",
+                "name": "Constitution"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:acrobatics",
+                        "name": "Acrobatics"
+                    },
+                    {
+                        "_key": "skills:animalhandling",
+                        "name": "Animal Handling"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:survival",
+                        "name": "Survival"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Martial Archetype",
+        "subclasses": [
+            {
+                "name": "Champion"
+            },
+            {
+                "name": "Battle Master"
+            },
+            {
+                "name": "Eldritch Knight"
+            }
+        ]
+    },
+    {
+        "_key": "classes:monk",
+        "name": "Monk",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:str",
+                "name": "Strength"
+            },
+            {
+                "_key": "abilities:dex",
+                "name": "Dexterity"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:acrobatics",
+                        "name": "Acrobatics"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    },
+                    {
+                        "_key": "skills:stealth",
+                        "name": "Stealth"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Monastic Tradition",
+        "subclasses": [
+            {
+                "name": "Way of the Open Hand"
+            },
+            {
+                "name": "Way of Shadow"
+            },
+            {
+                "name": "Way of the Four Elements"
+            }
+        ]
+    },
+    {
+        "_key": "classes:paladin",
+        "name": "Paladin",
+        "hitDice": 10,
+        "savingThrows": [
+            {
+                "_key": "abilities:wis",
+                "name": "Wisdom"
+            },
+            {
+                "_key": "abilities:cha",
+                "name": "Charisma"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:medicine",
+                        "name": "Medicine"
+                    },
+                    {
+                        "_key": "skills:persuasion",
+                        "name": "Persuasion"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Sacred Oath",
+        "subclasses": [
+            {
+                "name": "Oath of Devotion"
+            },
+            {
+                "name": "Oath of the Ancients"
+            },
+            {
+                "name": "Oath of Vengence"
+            }
+        ]
+    },
+    {
+        "_key": "classes:ranger",
+        "name": "Ranger",
+        "hitDice": 10,
+        "savingThrows": [
+            {
+                "_key": "abilities:str",
+                "name": "Strength"
+            },
+            {
+                "_key": "abilities:dex",
+                "name": "Dexterity"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 3,
+                "options": [
+                    {
+                        "_key": "skills:animalhandling",
+                        "name": "Animal Handling"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:investigation",
+                        "name": "Investigation"
+                    },
+                    {
+                        "_key": "skills:nature",
+                        "name": "Nature"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:stealth",
+                        "name": "Stealth"
+                    },
+                    {
+                        "_key": "skills:survival",
+                        "name": "Survival"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Ranger Archetype",
+        "subclasses": [
+            {
+                "name": "Hunter"
+            },
+            {
+                "name": "Beast Master"
+            }
+        ]
+    },
+    {
+        "_key": "classes:rogue",
+        "name": "Rogue",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:dex",
+                "name": "Dexterity"
+            },
+            {
+                "_key": "abilities:int",
+                "name": "Intelligence"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 4,
+                "options": [
+                    {
+                        "_key": "skills:acrobatics",
+                        "name": "Acrobatics"
+                    },
+                    {
+                        "_key": "skills:athletics",
+                        "name": "Athletics"
+                    },
+                    {
+                        "_key": "skills:deception",
+                        "name": "Deception"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:investigation",
+                        "name": "Investigation"
+                    },
+                    {
+                        "_key": "skills:perception",
+                        "name": "Perception"
+                    },
+                    {
+                        "_key": "skills:performance",
+                        "name": "Performance"
+                    },
+                    {
+                        "_key": "skills:persuasion",
+                        "name": "Persuasion"
+                    },
+                    {
+                        "_key": "skills:sleightofhand",
+                        "name": "Sleight of Hand"
+                    },
+                    {
+                        "_key": "skills:stealth",
+                        "name": "Stealth"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Roguish Archetype",
+        "subclasses": [
+            {
+                "name": "Thief"
+            },
+            {
+                "name": "Assassin"
+            },
+            {
+                "name": "Arcane Trickster"
+            }
+        ]
+    },
+    {
+        "_key": "classes:sorcerer",
+        "name": "Sorcerer",
+        "hitDice": 6,
+        "savingThrows": [
+            {
+                "_key": "abilities:con",
+                "name": "Constitution"
+            },
+            {
+                "_key": "abilities:cha",
+                "name": "Charisma"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:arcana",
+                        "name": "Arcana"
+                    },
+                    {
+                        "_key": "skills:deception",
+                        "name": "Deception"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:persuasion",
+                        "name": "Persuasion"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Sorcerous Origin",
+        "subclasses": [
+            {
+                "name": "Draconic Bloodline"
+            },
+            {
+                "name": "Wild Magic"
+            }
+        ]
+    },
+    {
+        "_key": "classes:warlock",
+        "name": "Warlock",
+        "hitDice": 8,
+        "savingThrows": [
+            {
+                "_key": "abilities:wis",
+                "name": "Wisdom"
+            },
+            {
+                "_key": "abilities:cha",
+                "name": "Charisma"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:arcana",
+                        "name": "Arcana"
+                    },
+                    {
+                        "_key": "skills:deception",
+                        "name": "Deception"
+                    },
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:intimidation",
+                        "name": "Intimidation"
+                    },
+                    {
+                        "_key": "skills:investigation",
+                        "name": "Investigation"
+                    },
+                    {
+                        "_key": "skills:nature",
+                        "name": "Nature"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Otherworldly Patron",
+        "subclasses": [
+            {
+                "name": "The Archfey"
+            },
+            {
+                "name": "The Fiend"
+            },
+            {
+                "name": "The Great Old One"
+            }
+        ]
+    },
+    {
+        "_key": "classes:wizard",
+        "name": "Wizard",
+        "hitDice": 6,
+        "savingThrows": [
+            {
+                "_key": "abilities:int",
+                "name": "Intelligence"
+            },
+            {
+                "_key": "abilities:wis",
+                "name": "Wisdom"
+            }
+        ],
+        "proficiencyOptions": {
+            "skills": {
+                "choose": 2,
+                "options": [
+                    {
+                        "_key": "skills:arcana",
+                        "name": "Arcana"
+                    },
+                    {
+                        "_key": "skills:history",
+                        "name": "History"
+                    },
+                    {
+                        "_key": "skills:insight",
+                        "name": "Insight"
+                    },
+                    {
+                        "_key": "skills:investigation",
+                        "name": "Investigation"
+                    },
+                    {
+                        "_key": "skills:medicine",
+                        "name": "Medicine"
+                    },
+                    {
+                        "_key": "skills:religion",
+                        "name": "Religion"
+                    }
+                ]
+            }
+        },
+        "subclassType": "Arcane Tradition",
+        "subclasses": [
+            {
+                "name": "School of Abjuration"
+            },
+            {
+                "name": "School of Conjuration"
+            },
+            {
+                "name": "School of Divination"
+            },
+            {
+                "name": "School of Enchantment"
+            },
+            {
+                "name": "School of Evocation"
+            },
+            {
+                "name": "School of Illusion"
+            },
+            {
+                "name": "School of Necromancy"
+            },
+            {
+                "name": "School of Transmutation"
+            }
+        ]
+    }
+]

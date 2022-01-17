@@ -11,6 +11,7 @@ public class SpellsContext : DbContext
     {
     }
 
+    public DbSet<Class> Class { get; set; }
     public DbSet<School> School { get; set; }
     public DbSet<Spell> Spell { get; set; }
 

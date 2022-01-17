@@ -13,6 +13,8 @@ public class SpellEntityConfiguration : IEntityTypeConfiguration<Spell>
         builder.HasOne(x => x.School)
             .WithMany(x => x.SpellList)
             .HasForeignKey(x => x.SchoolKey);
+        builder.HasMany(x => x.ClassList)
+            .WithMany(x => x.SpellList);
 
         ConfigureSeedData(builder);
     }

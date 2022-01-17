@@ -18,5 +18,5 @@ public class Spell
     public string Range { get; set; }
     // public ICollection<SpellComponent> Components { get; set; }
     public string Duration { get; set; }
-    // public ICollection<Class> Classes { get; set; }
+    public virtual ICollection<Class> ClassList { get; set; }
 }
