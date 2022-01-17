@@ -34,5 +34,30 @@ public class SpellEntityConfiguration : IEntityTypeConfiguration<Spell>
             x.School = null;
         });
         builder.HasData(spells);
+
+        // using EF built-in support for many-many type mapping without an explicit join entity
+        // made most sense to load the join seed data here
+        using var stream2 = File.OpenRead(@"Data/Seed/spells.json");
+        var joinData = JsonSerializer.Deserialize<List<SpellJson>>(stream2, options)
+            .SelectMany(x => x.classes, (x, y) => new
+            {
+                SpellListKey = x._key,
+                ClassListKey = y._key
+            })
+            .ToList();
+
+        builder.HasMany(x => x.ClassList)
+            .WithMany(x => x.SpellList)
+            .UsingEntity(j => j.HasData(joinData));
+    }
+
+    class SpellJson
+    {
+        public string _key { get; set; }
+        public ICollection<ClassJson> classes { get; set; }
+    }
+    class ClassJson
+    {
+        public string _key { get; set; }
     }
 }

@@ -20,7 +20,7 @@ public class SchoolEntityConfiguration : IEntityTypeConfiguration<School>
         {
             PropertyNameCaseInsensitive = true
         };
-        var spells = JsonSerializer.Deserialize<List<Spell>>(stream, options);
-        builder.HasData(spells);
+        var schools = JsonSerializer.Deserialize<List<School>>(stream, options);
+        builder.HasData(schools);
     }
 }
