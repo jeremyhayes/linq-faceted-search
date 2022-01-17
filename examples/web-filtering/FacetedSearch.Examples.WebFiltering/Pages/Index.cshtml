@@ -74,6 +74,7 @@
                                             <li class="list-group-item">Range: @item.Range</li>
                                             @* <li class="list-group-item">Components: @item.Components</li> *@
                                             <li class="list-group-item">Duration: @item.Duration</li>
+                                            <li class="list-group-item">Class: @(string.Join(", ", @item.ClassList.Select(x => x.Name)))</li>
                                         </ul>
                                     </div>
                                     <div class="col">
