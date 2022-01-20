@@ -13,7 +13,10 @@
                 @if (Model.AppliedFilters.Any())
                 {
                     <li class="list-group-item">
-                        <h5>Applied</h5>
+                        <div class="d-flex flex-row justify-content-between">
+                            <h5>Applied</h5>
+                            <a asp-all-route-data="new Dictionary<string, string>()">clear</a>
+                        </div>
                         <ul class="list-group list-group-flush">
                             @foreach (var filter in Model.AppliedFilters)
                             {
