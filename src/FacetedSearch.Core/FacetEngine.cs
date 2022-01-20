@@ -29,6 +29,7 @@ public abstract class FacetEngine<T>
         // build facets after filtering so each includes only available values
         var facets = _facetDefinitions
             .Select(x => x.GetFacet(items))
+            .Where(x => !filters.ContainsKey(x.Qualifier)) // TODO temp disable multi-select
             .Where(x => x.Values.Count() > 1);
 
         return new()
