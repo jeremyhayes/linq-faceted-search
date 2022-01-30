@@ -48,8 +48,9 @@
                                 var routeData = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
                                 routeData[facet.Qualifier] = value.Value;
 
-                                <li class="list-group-item">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <a asp-all-route-data="routeData">@value.Name</a>
+                                    <span class="badge bg-secondary rounded-pill">@value.Count</span>
                                 </li>
                             }
                         </ul>

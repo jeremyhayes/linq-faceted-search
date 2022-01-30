@@ -72,6 +72,7 @@ class SpellFacetEngine : FacetEngine<Spell>
                     {
                         Name = x.Key == 0 ? "Cantrips" : $"Level {x.Key}",
                         Value = x.Key.ToString(),
+                        Count = x.Count(),
                     })
             };
         }
@@ -115,7 +116,8 @@ class SpellFacetEngine : FacetEngine<Spell>
                     .Select(x => new FacetValue
                     {
                         Name = x.First().School.Name,
-                        Value = x.Key
+                        Value = x.Key,
+                        Count = x.Count(),
                     })
             };
         }
@@ -160,7 +162,8 @@ class SpellFacetEngine : FacetEngine<Spell>
                     .Select(x => new FacetValue
                     {
                         Name = x.First().Name,
-                        Value = x.Key
+                        Value = x.Key,
+                        Count = x.Count(),
                     })
             };
         }
