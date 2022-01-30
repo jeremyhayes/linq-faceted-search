@@ -30,9 +30,12 @@ public class FacetEngineTests
         Assert.Equal(2, result.Facets?.Count());
         var makeFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "make");
         Assert.Equal(3, makeFacet.Values?.Count());
-        Assert.Single(makeFacet.Values, x => x.Value == "Ford");
-        Assert.Single(makeFacet.Values, x => x.Value == "Honda");
-        Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        var ford = Assert.Single(makeFacet.Values, x => x.Value == "Ford");
+        Assert.Equal(2, ford.Count);
+        var honda = Assert.Single(makeFacet.Values, x => x.Value == "Honda");
+        Assert.Equal(2, honda.Count);
+        var toyota = Assert.Single(makeFacet.Values, x => x.Value == "Toyota");
+        Assert.Equal(2, toyota.Count);
         var yearFacet = Assert.Single<Facet>(result.Facets, x => x.Qualifier == "year");
         Assert.Equal(6, yearFacet.Values?.Count());
         Assert.Single(yearFacet.Values, x => x.Value == "2000");
@@ -229,6 +232,7 @@ class YearFacetDefinition : IFacetDefinition<Car>
                 {
                     Name = x.Key.ToString(),
                     Value = x.Key.ToString(),
+                    Count = x.Count(),
                 })
         };
     }
@@ -273,6 +277,7 @@ class MakeFacetDefinition : IFacetDefinition<Car>
                 {
                     Name = x.Key,
                     Value = x.Key,
+                    Count = x.Count(),
                 })
         };
     }

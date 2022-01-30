@@ -18,6 +18,7 @@ public class FacetValue
 {
     public string Name { get; init; }
     public string Value { get; init; }
+    public int Count { get; init; }
 }
 
 public class AppliedFilter
