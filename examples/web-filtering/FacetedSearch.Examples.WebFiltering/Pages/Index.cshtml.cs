@@ -27,6 +27,7 @@ public class IndexModel : PageModel
         var query = _context.Spell
             .Include(x => x.School)
             .Include(x => x.ClassList)
+            .ToList()
             .AsQueryable();
         // TODO IEnumerable<KeyValuePair<string, StringValues>> is not contravariant to IDictionary<string, IEnumerable<string>>
         var filters = Request.Query.ToDictionary(x => x.Key, x => string.Join(",", x.Value));
@@ -49,95 +50,28 @@ class SpellFacetEngine : FacetEngine<Spell>
         Add(new ClassFacet());
     }
 
-    class LevelFacet : IFacetDefinition<Spell>
+    class LevelFacet : FacetDefinition<Spell, int>
     {
-        public string Qualifier => "level";
-        public string Name => "Level";
+        public override string Qualifier => "level";
+        public override string Name => "Level";
 
-        public Expression<Func<Spell, bool>> GetPredicate(string value)
-        {
-            var intValue = int.Parse(value);
-            return x => x.Level == intValue;
-        }
+        public override Expression<Func<Spell, int>> PropertyExpression
+            => s => s.Level;
 
-        public Facet GetFacet(IQueryable<Spell> source)
-        {
-            return new()
-            {
-                Qualifier = Qualifier,
-                Name = Name,
-                Values = source
-                    .GroupBy(x => x.Level)
-                    .Select(x => new FacetValue
-                    {
-                        Name = x.Key == 0 ? "Cantrips" : $"Level {x.Key}",
-                        Value = x.Key.ToString(),
-                        Count = x.Count(),
-                    })
-            };
-        }
-
-        public AppliedFilter GetAppliedFilter(IQueryable<Spell> source, string value)
-        {
-            return new()
-            {
-                Qualifier = Qualifier,
-                Name = Name,
-                Values = source
-                    .Where(GetPredicate(value))
-                    .GroupBy(x => x.Level)
-                    .Select(x => new AppliedFilterValue
-                    {
-                        Name = x.Key == 0 ? "Cantrips" : $"Level {x.Key}",
-                        Value = x.Key.ToString(),
-                    })
-            };
-        }
+        public override Expression<Func<Spell, NameValue<int>>> GroupByExpression
+            => s => new NameValue<int>(s.Level == 0 ? "Cantrips" : $"Level {s.Level}", s.Level);
     }
 
-    class SchoolFacet : IFacetDefinition<Spell>
+    class SchoolFacet : FacetDefinition<Spell, string>
     {
-        public string Qualifier => "school";
-        public string Name => "School";
+        public override string Qualifier => "school";
+        public override string Name => "School";
 
-        public Expression<Func<Spell, bool>> GetPredicate(string value)
-        {
-            return x => x.School.Key == value;
-        }
+        public override Expression<Func<Spell, string>> PropertyExpression
+            => s => s.SchoolKey;
 
-        public Facet GetFacet(IQueryable<Spell> source)
-        {
-            return new()
-            {
-                Qualifier = Qualifier,
-                Name = Name,
-                Values = source
-                    .GroupBy(x => x.School.Key)
-                    .Select(x => new FacetValue
-                    {
-                        Name = x.First().School.Name,
-                        Value = x.Key,
-                        Count = x.Count(),
-                    })
-            };
-        }
-
-        public AppliedFilter GetAppliedFilter(IQueryable<Spell> source, string value)
-        {
-            return new()
-            {
-                Qualifier = Qualifier,
-                Name = Name,
-                Values = source
-                    .Where(GetPredicate(value))
-                    .GroupBy(x => x.School.Key)
-                    .Select(x => new AppliedFilterValue
-                    {
-                        Name = x.First().School.Name,
-                        Value = x.Key
-                    })
-            };
-        }
+        public override Expression<Func<Spell, NameValue<string>>> GroupByExpression
+            => s => new(s.School.Name, s.School.Key);
     }
 
     class ClassFacet : IFacetDefinition<Spell>
