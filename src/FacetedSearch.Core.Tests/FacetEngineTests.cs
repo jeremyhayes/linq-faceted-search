@@ -78,7 +78,7 @@ public class FacetEngineTests
         Assert.NotNull(result.AppliedFilters);
         Assert.Equal(1, result.AppliedFilters?.Count());
         var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
-        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Equal(1, makeFilter.Values?.Count());
         Assert.Single(makeFilter.Values, x => x.Value == "Honda");
     }
 
@@ -113,10 +113,10 @@ public class FacetEngineTests
         Assert.NotNull(result.AppliedFilters);
         Assert.Equal(2, result.AppliedFilters?.Count());
         var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
-        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Equal(1, makeFilter.Values?.Count());
         Assert.Single(makeFilter.Values, x => x.Value == "Honda");
         var yearFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "year");
-        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Equal(1, makeFilter.Values?.Count());
         Assert.Single(yearFilter.Values, x => x.Value == "2003");
     }
 
@@ -182,10 +182,10 @@ public class FacetEngineTests
         Assert.NotNull(result.AppliedFilters);
         Assert.Equal(2, result.AppliedFilters?.Count());
         var makeFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "make");
-        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Equal(1, makeFilter.Values?.Count());
         Assert.Single(makeFilter.Values, x => x.Value == "Honda");
         var yearFilter = Assert.Single(result.AppliedFilters, x => x.Qualifier == "year");
-        Assert.Equal(1, makeFilter.Values.Count());
+        Assert.Equal(1, makeFilter.Values?.Count());
         Assert.Single(yearFilter.Values, x => x.Value == "2000");
     }
 
